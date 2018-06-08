@@ -1,7 +1,13 @@
 package com.malkfilipp.travelplanner.domain.location;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.malkfilipp.travelplanner.domain.flight.Airline;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 public class Country {
@@ -9,6 +15,14 @@ public class Country {
     private String id;
     @NotNull
     private String name;
+
+    @JsonIgnore
+    @OneToMany(mappedBy="country")
+    private List<City> cities;
+
+    @JsonIgnore
+    @OneToMany(mappedBy="country")
+    private List<Airline> airlines;
 
     public Country() {
     }
@@ -34,6 +48,22 @@ public class Country {
         this.name = name;
     }
 
+    public List<City> getCities() {
+        return cities;
+    }
+
+    public void setCities(List<City> cities) {
+        this.cities = cities;
+    }
+
+    public List<Airline> getAirlines() {
+        return airlines;
+    }
+
+    public void setAirlines(List<Airline> airlines) {
+        this.airlines = airlines;
+    }
+
     @Override
     public String toString() {
         return "Country{" +
@@ -41,4 +71,6 @@ public class Country {
                 ", name='" + name + '\'' +
                 '}';
     }
+
+
 }

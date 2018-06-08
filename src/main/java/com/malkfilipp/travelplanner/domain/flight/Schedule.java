@@ -1,8 +1,11 @@
 package com.malkfilipp.travelplanner.domain.flight;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 public class Schedule {
@@ -19,6 +22,10 @@ public class Schedule {
     private Timestamp departureTime;
     @NotNull
     private Timestamp arrivalTime;
+
+    @JsonIgnore
+    @OneToMany(mappedBy="schedule")
+    private List<Ticket> tickets;
 
     public Schedule() {
     }
@@ -60,6 +67,14 @@ public class Schedule {
 
     public void setArrivalTime(Timestamp arrivalTime) {
         this.arrivalTime = arrivalTime;
+    }
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
     }
 
     @Override
