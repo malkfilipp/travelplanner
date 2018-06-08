@@ -1,8 +1,12 @@
 package com.malkfilipp.travelplanner.domain.location;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.malkfilipp.travelplanner.domain.flight.Airport;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Time;
+import java.util.List;
 
 @Entity
 public class City {
@@ -21,6 +25,10 @@ public class City {
     private Time timezone;
     @NotNull
     private boolean summerShift;
+
+    @JsonIgnore
+    @OneToMany(mappedBy="city")
+    private List<Airport> airports;
 
     public City() {
     }
@@ -72,6 +80,14 @@ public class City {
 
     public void setSummerShift(boolean summerShift) {
         this.summerShift = summerShift;
+    }
+
+    public List<Airport> getAirports() {
+        return airports;
+    }
+
+    public void setAirports(List<Airport> airports) {
+        this.airports = airports;
     }
 
     @Override

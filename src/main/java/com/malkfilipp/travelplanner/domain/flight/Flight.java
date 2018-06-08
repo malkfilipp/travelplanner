@@ -1,7 +1,10 @@
 package com.malkfilipp.travelplanner.domain.flight;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 public class Flight {
@@ -31,6 +34,10 @@ public class Flight {
     @ManyToOne
     @JoinColumn(name = "arrivalAirportId")
     private Airport arrivalAirport;
+
+    @JsonIgnore
+    @OneToMany(mappedBy="flight")
+    private List<Schedule> schedules;
 
     public Flight() {
     }
@@ -91,6 +98,14 @@ public class Flight {
 
     public void setArrivalAirport(Airport arrivalAirport) {
         this.arrivalAirport = arrivalAirport;
+    }
+
+    public List<Schedule> getSchedules() {
+        return schedules;
+    }
+
+    public void setSchedules(List<Schedule> schedules) {
+        this.schedules = schedules;
     }
 
     @Override

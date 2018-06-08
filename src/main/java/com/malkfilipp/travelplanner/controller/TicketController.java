@@ -20,11 +20,10 @@ public class TicketController {
     }
 
     @GetMapping("/tickets")
-    public Iterable<Ticket> getTickets(@RequestParam("arrival") String arrival,
-                                       @RequestParam("departure") String departure,
+    public Iterable<Ticket> getTickets(@RequestParam("departure") String departure,
+                                       @RequestParam("arrival") String arrival,
                                        @RequestParam("date")
                                        @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
-        return ticketService.getTickets(arrival, departure, date);
-        // TODO: check the input parameters here or on the client
+        return ticketService.getTickets(departure, arrival, date);
     }
 }

@@ -12,10 +12,6 @@ public enum TravelClass {
         this.name = name;
     }
 
-    public String displayName() {
-        return name;
-    }
-
     @Override
     public String toString() {
         return name;
