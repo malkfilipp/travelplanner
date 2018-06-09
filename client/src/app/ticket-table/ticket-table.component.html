@@ -1,0 +1,60 @@
+<mat-card>
+  <mat-card-title>
+    Tickets
+  </mat-card-title>
+
+  <mat-card-content>
+    <mat-table [dataSource]="tickets">
+
+      <ng-container matColumnDef="number">
+        <mat-header-cell *matHeaderCellDef> Flight number</mat-header-cell>
+        <mat-cell *matCellDef="let ticket"> {{ticket.schedule.flight.number}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="airline">
+        <mat-header-cell *matHeaderCellDef> Airline</mat-header-cell>
+        <mat-cell *matCellDef="let ticket"> {{ticket.schedule.flight.airline.name}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="aircraft">
+        <mat-header-cell *matHeaderCellDef> Aircraft</mat-header-cell>
+        <mat-cell *matCellDef="let ticket"> {{ticket.schedule.flight.aircraft.name}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="departure">
+        <mat-header-cell *matHeaderCellDef> Departure</mat-header-cell>
+        <mat-cell *matCellDef="let ticket"> {{ticket.schedule.flight.departureAirport.name}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="arrival">
+        <mat-header-cell *matHeaderCellDef> Arrival</mat-header-cell>
+        <mat-cell *matCellDef="let ticket"> {{ticket.schedule.flight.arrivalAirport.name}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="departureTime">
+        <mat-header-cell *matHeaderCellDef> Departure time</mat-header-cell>
+        <mat-cell *matCellDef="let ticket"> {{ticket.schedule.departureTime | date:'shortTime'}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="arrivalTime">
+        <mat-header-cell *matHeaderCellDef> Arrival time</mat-header-cell>
+        <mat-cell *matCellDef="let ticket"> {{ticket.schedule.arrivalTime | date:'shortTime'}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="travelClass">
+        <mat-header-cell *matHeaderCellDef> Class</mat-header-cell>
+        <mat-cell *matCellDef="let ticket"> {{ticket.travelClass}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="amount">
+        <mat-header-cell *matHeaderCellDef> Amount</mat-header-cell>
+        <mat-cell *matCellDef="let ticket"> {{ticket.amount}}</mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+    </mat-table>
+  </mat-card-content>
+
+</mat-card>
