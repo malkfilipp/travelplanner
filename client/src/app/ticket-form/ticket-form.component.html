@@ -1,0 +1,59 @@
+<mat-card>
+  <mat-card-title>
+    Ticket form
+  </mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="ticketForm" (ngSubmit)="onSubmit()">
+      <table>
+        <tr>
+          <td>
+            <mat-form-field class="ticket-form">
+              <input formControlName="departureCity" matInput placeholder="Departure city">
+            </mat-form-field>
+            <mat-error>
+              <span *ngIf="!ticketForm.get('departureCity').valid && ticketForm.get('departureCity').touched">
+                Please enter departure city
+              </span>
+            </mat-error>
+          </td>
+          <td>
+            <mat-form-field class="ticket-form">
+              <input formControlName="arrivalCity" matInput placeholder="Arrival city">
+            </mat-form-field>
+            <mat-error>
+              <span *ngIf="!ticketForm.get('arrivalCity').valid && ticketForm.get('arrivalCity').touched">
+                Please enter arrival city
+              </span>
+            </mat-error>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <mat-form-field class="ticket-form">
+              <input formControlName="date" matInput [matDatepicker]="picker" placeholder="Date">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-error>
+              <span *ngIf="!ticketForm.get('date').valid && ticketForm.get('date').touched">
+                Please enter date
+              </span>
+            </mat-error>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" class="text">
+            <button mat-raised-button color="primary" [disabled]="!ticketForm.valid">Find</button>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+<div *ngIf="submitted">
+  <app-ticket-table [tickets]="tickets"></app-ticket-table>
+</div>
+
+
+
