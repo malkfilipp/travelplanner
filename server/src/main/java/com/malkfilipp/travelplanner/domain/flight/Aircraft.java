@@ -2,23 +2,20 @@ package com.malkfilipp.travelplanner.domain.flight;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
 public class Aircraft {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @NotNull
     private String name;
 
     @JsonIgnore
-    @OneToMany(mappedBy="aircraft")
+    @OneToMany(mappedBy = "aircraft")
     private List<Flight> flights;
 
     public Aircraft() {

@@ -11,7 +11,7 @@ import java.util.List;
 @Entity
 public class City {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @NotNull
     private String name;
@@ -27,7 +27,7 @@ public class City {
     private boolean summerShift;
 
     @JsonIgnore
-    @OneToMany(mappedBy="city")
+    @OneToMany(mappedBy = "city")
     private List<Airport> airports;
 
     public City() {

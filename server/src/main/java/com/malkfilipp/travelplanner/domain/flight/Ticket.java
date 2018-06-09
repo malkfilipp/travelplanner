@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Ticket {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @NotNull
@@ -16,17 +16,18 @@ public class Ticket {
 
     @NotNull
     @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "enum('FIRST', 'BUSINESS', 'PREMIUM_ECONOMY', 'ECONOMY')")
     private TravelClass travelClass;
     @NotNull
-    private double amount;
+    private Double amount;
     @NotNull
-    private int quantity;
+    private Integer quantity;
 
     public Ticket() {
     }
 
     public Ticket(Integer id, Schedule schedule, TravelClass travelClass,
-                  double amount, int quantity) {
+                  Double amount, Integer quantity) {
         this.id = id;
         this.schedule = schedule;
         this.travelClass = travelClass;
@@ -58,19 +59,19 @@ public class Ticket {
         this.travelClass = travelClass;
     }
 
-    public double getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 

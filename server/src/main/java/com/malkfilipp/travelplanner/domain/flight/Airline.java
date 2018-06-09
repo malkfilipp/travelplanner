@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 public class Airline {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @NotNull
     private String name;
@@ -21,7 +21,7 @@ public class Airline {
     private Country country;
 
     @JsonIgnore
-    @OneToMany(mappedBy="airline")
+    @OneToMany(mappedBy = "airline")
     private List<Flight> flights;
 
     public Airline() {

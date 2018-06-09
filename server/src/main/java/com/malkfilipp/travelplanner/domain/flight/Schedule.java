@@ -10,7 +10,7 @@ import java.util.List;
 @Entity
 public class Schedule {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @NotNull
@@ -24,7 +24,7 @@ public class Schedule {
     private Timestamp arrivalTime;
 
     @JsonIgnore
-    @OneToMany(mappedBy="schedule")
+    @OneToMany(mappedBy = "schedule")
     private List<Ticket> tickets;
 
     public Schedule() {

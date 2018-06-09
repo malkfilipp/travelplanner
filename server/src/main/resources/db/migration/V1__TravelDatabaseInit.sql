@@ -23,9 +23,9 @@ DROP TABLE IF EXISTS `Accommodation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Accommodation` (
-  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
-  `roomId` smallint(5) unsigned NOT NULL,
-  `mealTypeId` smallint(5) unsigned NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `roomId` int(10) unsigned NOT NULL,
+  `mealTypeId` int(10) unsigned NOT NULL,
   `mealPricePerDay` float(5,2) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `AccommodationMealTypeId` (`mealTypeId`),
@@ -53,7 +53,7 @@ DROP TABLE IF EXISTS `Aircraft`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Aircraft` (
-  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `type` (`name`)
@@ -78,7 +78,7 @@ DROP TABLE IF EXISTS `Airline`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Airline` (
-  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `countryId` varchar(2) NOT NULL,
   PRIMARY KEY (`id`),
@@ -107,7 +107,7 @@ DROP TABLE IF EXISTS `Airport`;
 CREATE TABLE `Airport` (
   `id` varchar(3) NOT NULL,
   `name` varchar(50) DEFAULT NULL,
-  `cityId` smallint(5) unsigned NOT NULL,
+  `cityId` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `AirportCityId` (`cityId`),
   CONSTRAINT `AirportCityId` FOREIGN KEY (`cityId`) REFERENCES `City` (`id`)
@@ -132,7 +132,7 @@ DROP TABLE IF EXISTS `City`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `City` (
-  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `countryId` varchar(2) NOT NULL,
   `timezone` time NOT NULL,
@@ -186,10 +186,10 @@ DROP TABLE IF EXISTS `Flight`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Flight` (
-  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
-  `airlineId` smallint(5) unsigned NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `airlineId` int(10) unsigned NOT NULL,
   `number` varchar(10) NOT NULL,
-  `aircraftId` smallint(5) unsigned NOT NULL,
+  `aircraftId` int(10) unsigned NOT NULL,
   `departureAirportId` varchar(3) NOT NULL,
   `arrivalAirportId` varchar(3) NOT NULL,
   PRIMARY KEY (`id`),
@@ -222,9 +222,9 @@ DROP TABLE IF EXISTS `Hotel`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Hotel` (
-  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
-  `cityId` smallint(5) unsigned NOT NULL,
+  `cityId` int(10) unsigned NOT NULL,
   `address` varchar(100) NOT NULL,
   `extra` text,
   PRIMARY KEY (`id`),
@@ -251,7 +251,7 @@ DROP TABLE IF EXISTS `MealType`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `MealType` (
-  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
@@ -276,10 +276,10 @@ DROP TABLE IF EXISTS `Room`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Room` (
-  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
-  `hotelId` smallint(5) unsigned NOT NULL,
-  `typeId` smallint(5) unsigned NOT NULL,
-  `pricePerNight` float(5,2) NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `hotelId` int(10) unsigned NOT NULL,
+  `typeId` int(10) unsigned NOT NULL,
+  `pricePerNight` double(5,2) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `RoomHotelId` (`hotelId`),
   KEY `RoomTypeId` (`typeId`),
@@ -306,8 +306,8 @@ DROP TABLE IF EXISTS `RoomReservation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `RoomReservation` (
-  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
-  `accommodationId` smallint(5) unsigned NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `accommodationId` int(10) unsigned NOT NULL,
   `checkIn` date DEFAULT NULL,
   `checkOut` date DEFAULT NULL,
   `totalPrice` float(5,2) NOT NULL,
@@ -334,7 +334,7 @@ DROP TABLE IF EXISTS `RoomType`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `RoomType` (
-  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
@@ -359,8 +359,8 @@ DROP TABLE IF EXISTS `Schedule`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Schedule` (
-  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
-  `flightId` smallint(5) unsigned NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `flightId` int(10) unsigned NOT NULL,
   `departureTime` datetime NOT NULL,
   `arrivalTime` datetime NOT NULL,
   PRIMARY KEY (`id`),
@@ -390,10 +390,10 @@ DROP TABLE IF EXISTS `Ticket`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Ticket` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `scheduleId` smallint(5) unsigned NOT NULL,
+  `scheduleId` int(10) unsigned NOT NULL,
   `travelClass` enum('FIRST','BUSINESS','PREMIUM_ECONOMY','ECONOMY') NOT NULL,
-  `amount` float(7,2) NOT NULL,
-  `quantity` smallint(5) unsigned NOT NULL,
+  `amount` double(7,2) NOT NULL,
+  `quantity` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `TicketSheduleId` (`scheduleId`),
   CONSTRAINT `TicketSheduleId` FOREIGN KEY (`scheduleId`) REFERENCES `Schedule` (`id`)
@@ -418,9 +418,9 @@ DROP TABLE IF EXISTS `Transfer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Transfer` (
-  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `airportId` varchar(3) NOT NULL,
-  `hotelId` smallint(5) unsigned NOT NULL,
+  `hotelId` int(10) unsigned NOT NULL,
   `price` float(5,2) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `TransferAirportId` (`airportId`),

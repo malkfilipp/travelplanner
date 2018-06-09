@@ -17,11 +17,11 @@ public class Country {
     private String name;
 
     @JsonIgnore
-    @OneToMany(mappedBy="country")
+    @OneToMany(mappedBy = "country")
     private List<City> cities;
 
     @JsonIgnore
-    @OneToMany(mappedBy="country")
+    @OneToMany(mappedBy = "country")
     private List<Airline> airlines;
 
     public Country() {
