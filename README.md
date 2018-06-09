@@ -1,10 +1,10 @@
-# Travelplanner is app with Spring Boot and Angular
+# Travelplanner is app built with Spring Boot and Angular
  
 **Prerequisites:** [Java 10](http://www.oracle.com/technetwork/java/javase/downloads/jdk10-downloads-4416644.html), [Maven](https://maven.apache.org/), [Node.js](https://nodejs.org/).
 
 ## Getting Started
 
-To install this example application, run the following commands:
+To install this application, run the following commands:
 
 ```bash
 git clone https://github.com/malkfilipp/travelplanner.git

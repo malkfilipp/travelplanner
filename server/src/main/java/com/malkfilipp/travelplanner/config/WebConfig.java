@@ -18,10 +18,8 @@ public class WebConfig implements WebMvcConfigurer {
         this.properties = properties;
     }
 
-
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-
         registry.addMapping("/tickets")
                 .allowedOrigins(properties.getOrigin())
                 .maxAge(properties.getMaxAge());

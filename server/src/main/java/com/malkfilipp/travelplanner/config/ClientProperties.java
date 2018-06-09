@@ -13,7 +13,6 @@ public class ClientProperties {
 
     public void setOrigin(String origin) {
         this.origin = origin;
-
     }
 
     public Integer getMaxAge() {
