@@ -1,6 +1,6 @@
 # Travelplanner is app built with Spring Boot and Angular
  
-**Prerequisites:** [Java 10](http://www.oracle.com/technetwork/java/javase/downloads/jdk10-downloads-4416644.html), [Maven](https://maven.apache.org/), [Node.js](https://nodejs.org/), [MySQL](https://dev.mysql.com/downloads/mysql/).
+**Prerequisites:** [Java 10](http://www.oracle.com/technetwork/java/javase/downloads/jdk10-downloads-4416644.html), [Maven](https://maven.apache.org/), [Node.js](https://nodejs.org/), [Angular](https://angular.io/guide/quickstart), [MySQL](https://dev.mysql.com/downloads/mysql/).
 
 ## Getting Started
 
