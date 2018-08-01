@@ -2,9 +2,11 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {
+  MatAutocompleteModule,
   MatButtonModule,
   MatCardModule,
-  MatDatepickerModule, MatFormFieldModule,
+  MatDatepickerModule,
+  MatFormFieldModule,
   MatInputModule,
   MatListModule,
   MatNativeDateModule,
@@ -19,6 +21,7 @@ import {TicketService} from './service/ticket.service';
 import {TicketTableComponent} from './ticket-table/ticket-table.component';
 import {TicketFormComponent} from './ticket-form/ticket-form.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {CityService} from './service/city.service';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    MatAutocompleteModule,
     MatButtonModule,
     MatCardModule,
     MatDatepickerModule,
@@ -43,7 +47,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     MatTableModule,
     MatProgressSpinnerModule,
   ],
-  providers: [TicketService],
+  providers: [TicketService, CityService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

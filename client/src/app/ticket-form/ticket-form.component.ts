@@ -1,9 +1,10 @@
 import {Component} from '@angular/core';
-
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {TicketService} from '../service/ticket.service';
+import {CityService} from '../service/city.service';
 import {Ticket} from '../model/ticket';
 import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-ticket-form',
@@ -13,17 +14,40 @@ import {Observable} from 'rxjs';
 
 export class TicketFormComponent {
   ticketForm: FormGroup;
+  cities: string[] = [];
+  filteredDepartureCities: Observable<string[]>;
+  filteredArrivalCities: Observable<string[]>;
   tickets: Observable<Ticket[]>;
   submitted = false;
 
   constructor(private ticketService: TicketService,
-              private fb: FormBuilder) {
-    this.ticketForm = fb.group({
+              private cityService: CityService,
+              private formBuilder: FormBuilder) {
+    this.ticketForm = formBuilder.group({
       'departureCity': ['', Validators.required],
       'arrivalCity': ['', Validators.required],
       'date': ['', Validators.required],
     });
 
+    this.cityService.get().subscribe(cities => {
+      cities.forEach(city => this.cities.push(city.name));
+
+      this.filteredDepartureCities = this.getFilteredCities('departureCity');
+      this.filteredArrivalCities = this.getFilteredCities('arrivalCity');
+    });
+  }
+
+  private getFilteredCities(city: string) {
+    return this.ticketForm.get(city).valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this.filter(value))
+      );
+  }
+
+  private filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.cities.filter(city => city.toLowerCase().includes(filterValue));
   }
 
   onSubmit() {

@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  ticketsApi: 'http://localhost:8080/tickets'
+  ticketsApi: 'http://localhost:8080/tickets',
+  citiesApi: 'http://localhost:8080/cities'
 };

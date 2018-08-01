@@ -2,7 +2,6 @@ import {Component, Input} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Ticket} from '../model/ticket';
 
-
 @Component({
   selector: 'app-ticket-table',
   templateUrl: './ticket-table.component.html',

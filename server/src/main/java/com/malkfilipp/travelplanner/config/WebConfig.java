@@ -23,5 +23,8 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addMapping("/tickets")
                 .allowedOrigins(properties.getOrigin())
                 .maxAge(properties.getMaxAge());
+        registry.addMapping("/cities")
+                .allowedOrigins(properties.getOrigin())
+                .maxAge(properties.getMaxAge());
     }
 }

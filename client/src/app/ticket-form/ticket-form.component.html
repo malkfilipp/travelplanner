@@ -8,7 +8,13 @@
         <tr>
           <td>
             <mat-form-field class="ticket-form">
-              <input formControlName="departureCity" matInput placeholder="Departure city">
+              <input formControlName="departureCity" matInput placeholder="Departure city"
+                     [matAutocomplete]="autoDeparture">
+              <mat-autocomplete autoActiveFirstOption #autoDeparture="matAutocomplete">
+                <mat-option *ngFor="let city of filteredDepartureCities | async" [value]="city">
+                  {{city}}
+                </mat-option>
+              </mat-autocomplete>
             </mat-form-field>
             <mat-error>
               <span *ngIf="!ticketForm.get('departureCity').valid && ticketForm.get('departureCity').touched">
@@ -18,7 +24,13 @@
           </td>
           <td>
             <mat-form-field class="ticket-form">
-              <input formControlName="arrivalCity" matInput placeholder="Arrival city">
+              <input formControlName="arrivalCity" matInput placeholder="Arrival city"
+                     [matAutocomplete]="autoArrival">
+              <mat-autocomplete autoActiveFirstOption #autoArrival="matAutocomplete">
+                <mat-option *ngFor="let city of filteredArrivalCities | async" [value]="city">
+                  {{city}}
+                </mat-option>
+              </mat-autocomplete>
             </mat-form-field>
             <mat-error>
               <span *ngIf="!ticketForm.get('arrivalCity').valid && ticketForm.get('arrivalCity').touched">
@@ -54,6 +66,3 @@
 <div *ngIf="submitted">
   <app-ticket-table [tickets]="tickets"></app-ticket-table>
 </div>
-
-
-
